@@ -1,0 +1,21 @@
+USE [edison365]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sproc_Person_Delete]    Script Date: 25/03/2021 23:22:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[sproc_Person_Delete] ( @PersonID INT )
+AS 
+
+    DELETE FROM [edison365].[dbo].[Person]
+    WHERE PersonID = @PersonID;
+
+GO
+
+

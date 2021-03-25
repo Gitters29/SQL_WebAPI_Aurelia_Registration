@@ -1,0 +1,55 @@
+USE [edison365]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sproc_Person_Upsert]    Script Date: 25/03/2021 23:23:17 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[sproc_Person_Upsert](
+	@PersonID INT,
+	@FirstName VARCHAR(100),
+	@LastName VARCHAR(100),
+	@Email VARCHAR(100),
+	@MobileNumber VARCHAR(11),
+	@AddressLine1 VARCHAR(255),
+	@AddressLine2 VARCHAR(255) = NULL,
+	@AddressLine3 VARCHAR(255) = NULL,
+	@PostCode VARCHAR(8))
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+IF EXISTS ( SELECT * FROM [edison365].[dbo].[Person] WHERE PersonID = @PersonID )
+ 
+    UPDATE [edison365].[dbo].[Person]
+       SET FirstName = @FirstName,
+		   LastName = @LastName,
+		   Email = @Email,
+		   MobileNumber = @MobileNumber,
+		   AddressLine1 = @AddressLine1,
+		   AddressLine2 = @AddressLine2,
+		   AddressLine3 = @AddressLine3,
+		   PostCode = @PostCode
+     WHERE PersonID = @PersonID;
+ 
+  ELSE 
+ 
+    INSERT INTO [edison365].[dbo].[Person] (FirstName, LastName, Email, MobileNumber, AddressLine1,
+	 AddressLine2, AddressLine3, PostCode) output INSERTED.PersonID
+    VALUES (@FirstName, @LastName, @Email, @MobileNumber, @AddressLine1, @AddressLine2, @AddressLine3,
+	 @PostCode);
+END
+GO
+
+

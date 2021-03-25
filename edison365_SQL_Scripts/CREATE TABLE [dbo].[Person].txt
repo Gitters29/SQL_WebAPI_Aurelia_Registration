@@ -1,0 +1,28 @@
+USE [edison365]
+GO
+
+/****** Object:  Table [dbo].[Person]    Script Date: 25/03/2021 23:22:02 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Person](
+	[PersonID] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [varchar](100) NOT NULL,
+	[LastName] [varchar](100) NOT NULL,
+	[MobileNumber] [varchar](11) NOT NULL,
+	[AddressLine1] [varchar](255) NOT NULL,
+	[AddressLine2] [varchar](255) NULL,
+	[AddressLine3] [varchar](255) NULL,
+	[PostCode] [varchar](7) NOT NULL,
+	[Email] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PersonID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
