@@ -1,0 +1,178 @@
+<template>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+  id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<form class="form-horizontal" submit.trigger="submitForm()">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Register</legend>
+    </div>
+    <div class="form-group" validation-errors.bind="firstNameErrors" class.bind="firstNameErrors.length ? 'has-error' : ''">
+      <div class="control-group">
+        <!-- First Name -->
+        <label class="control-label" for="firstName">First Name</label>
+        <div class="controls form-group">
+          <input type="text" id="firstName" name="firstName" placeholder="" value.bind="firstName & validate"
+            class="input-xlarge">
+          <span class="help-block" repeat.for="errorInfo of firstNameErrors">
+            ${errorInfo.error.message}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" validation-errors.bind="lastNameErrors" class.bind="lastNameErrors.length ? 'has-error' : ''">
+      <div class="control-group">
+        <!-- Last Name -->
+        <label class="control-label" for="lastName">Last Name</label>
+        <div class="controls">
+          <input type="text" id="lastName" name="lastName" placeholder="" value.bind="lastName & validate"
+            class="input-xlarge">
+          <span class="help-block" repeat.for="errorInfo of lastNameErrors">
+            ${errorInfo.error.message}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" validation-errors.bind="emailErrors" 
+    class.bind="emailErrors.length ? 'has-error' : ''">
+      <div class="control-group">
+        <!-- E-mail -->
+        <label class="control-label" for="email">E-mail</label>
+        <div class="controls">
+          <input type="text" id="email" name="email" placeholder="" 
+          value.bind="email & validate" class="input-xlarge">
+          <!-- <p class="help-block">Please provide your E-mail</p> -->
+          <span class="help-block" repeat.for="errorInfo of emailErrors">
+            ${errorInfo.error.message}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" validation-errors.bind="mobileNumberErrors" 
+    class.bind="mobileNumberErrors.length ? 'has-error' : ''">
+      <div class="control-group">
+        <!-- Mobile Number -->
+        <label class="control-label" for="mobileNumber">Mobile Number</label>
+        <div class="controls">
+          <input type="text" id="mobileNumber" name="mobileNumber" placeholder=""
+          value.bind="mobileNumber & validate" //pattern="[0-9]{11}" class="input-xlarge">
+          <span class="help-block" repeat.for="errorInfo of mobileNumberErrors">
+            ${errorInfo.error.message}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" validation-errors.bind="addressLine1Errors" class.bind="addressLine1Errors.length ? 'has-error' : ''">
+      <div class="control-group">
+        <!-- Address Line 1 -->
+        <label class="control-label" for="addressLine1">Address Line 1</label>
+        <div class="controls">
+          <input type="text" id="addressLine1" name="addressLine1" placeholder="" 
+          value.bind="addressLine1 & validate"
+            class="input-xlarge">
+          <span class="help-block" repeat.for="errorInfo of addressLine1Errors">
+            ${errorInfo.error.message}
+          </span>
+          <!-- <p class="help-block">Please provide your Address Line 1</p> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- Address Line 2 -->
+      <label class="control-label" for="addressLine2">Address Line 2</label>
+      <div class="controls">
+        <input type="text" id="addressLine2" name="addressLine2" placeholder="" 
+        value=""
+        value.bind="addressLine2" class="input-xlarge">
+        <!-- <p class="help-block">Please provide your Address Line 2</p> -->
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- Address Line 3 -->
+      <label class="control-label" for="addressLine3">Address Line 3</label>
+      <div class="controls">
+        <input type="text" id="addressLine3" name="addressLine3" placeholder=""
+        value=""
+        value.bind="addressLine3" class="input-xlarge">
+        <!-- <p class="help-block">Please provide your Address Line 2</p> -->
+      </div>
+    </div>
+
+    <!-- <div class="control-group"> -->
+      <!-- City -->
+      <!-- <label class="control-label" for="city">City</label>
+      <div class="controls">
+        <input type="text" id="city" name="city" placeholder="" class="input-xlarge"> -->
+        <!-- <p class="help-block">Please provide your Address Line 2</p> -->
+      <!-- </div>
+    </div> -->
+
+    <!-- <div class="control-group"> -->
+      <!-- County -->
+      <!-- <label class="control-label" for="county">County</label>
+      <div class="controls">
+        <input type="text" id="county" name="county" placeholder="" class="input-xlarge"> -->
+        <!-- <p class="help-block">Please provide your Address Line 2</p> -->
+      <!-- </div>
+    </div> -->
+
+    <div class="form-group" validation-errors.bind="postcodeErrors" 
+    class.bind="postcodeErrors.length ? 'has-error' : ''">
+      <div class="control-group">
+        <!-- Postcode -->
+        <label class="control-label" for="postcode">Postcode</label>
+        <div class="controls">
+          <input type="text" id="postcode" name="postcode" placeholder="" 
+          value.bind="postcode & validate"
+            class="input-xlarge">
+          <span class="help-block" repeat.for="errorInfo of postcodeErrors">
+            ${errorInfo.error.message}
+          </span>
+        </div>
+      </div>
+
+    <!-- <div class="control-group"> -->
+      <!-- Country -->
+      <!-- <label class="control-label" for="country">Country</label>
+      <div class="controls">
+        <input type="text" id="country" name="country" placeholder="" class="input-xlarge"> -->
+        <!-- <p class="help-block">Please provide your Country</p> -->
+      <!-- </div>
+    </div> -->
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success">Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<table class="table table-bordered">
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Mobile Number</th>
+    <th>Address Line 1</th>
+    <th>Address Line 2</th>
+    <th>Address Line 3</th>
+    <th>Post Code</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tbody id="tbody" innerhtml.bind="htmlProperty | sanitizeHTML"></tbody>
+</table>
+</template>
+
